@@ -10,4 +10,9 @@ namespace investment_bank
 		string ClientSector			{ get; }
 		DateTime NextPaymentDate	{ get; }
 	}
+
+	public interface IRule
+	{
+		Boolean Match(ITrade trade);
+	}
 }

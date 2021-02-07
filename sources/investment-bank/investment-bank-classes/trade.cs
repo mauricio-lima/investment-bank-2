@@ -10,10 +10,11 @@ namespace investment_bank
 		private string   mClientSector;
 		private DateTime mNextPaymentDate;
 		private string mCategory;
+		private HashSet<IRule> mRules;
 
 		void UpdateCategory()
 		{
-			this.mCategory = "DEFAULTED";
+			this.ApplyRules();
 		}
 		public double Value
 		{
@@ -44,9 +45,24 @@ namespace investment_bank
 			}
 		}
 
-		public string	Category		
+		public string Category
 		{ 
 			get => this.mCategory; 
+		}
+
+		public HashSet<IRule> Rules
+		{
+			get => mRules;
+			set
+			{
+				this.mRules = value;
+				this.ApplyRules();
+			}
+		}
+
+		private void ApplyRules()
+		{
+			this.mCategory = "DEFAULTED";
 		}
 
 		private void Initialize()
@@ -70,8 +86,22 @@ namespace investment_bank
 	}
 
 
+	class TradeCategories
+	{
+		
+	}
+
+
 	public class Portfolio
 	{
+		class EmptyRule : IRule
+		{
+			public Boolean Match(ITrade trade)
+			{
+				return false;
+			}
+		}
+
 		private List<ITrade> mTrades;
 
 		public List<ITrade> Trades
@@ -79,8 +109,10 @@ namespace investment_bank
 			get => this.mTrades;
 		}
 
-		public void Add(ITrade trade)
+		public void Add(double Value, string ClientSector, DateTime NextPaymentDate)
 		{
+			Trade trade = new Trade(Value, ClientSector, NextPaymentDate);
+			trade.Rules.Add(new EmptyRule());
 			this.mTrades.Add(trade);
 		}
 
