@@ -68,5 +68,35 @@ namespace investment_bank
 			this.Initialize();
 		}
 	}
+
+
+	public class Portfolio
+	{
+		private List<ITrade> mTrades;
+
+		public List<ITrade> Trades
+		{
+			get => this.mTrades;
+		}
+
+		public void Add(ITrade trade)
+		{
+			this.mTrades.Add(trade);
+		}
+
+		public void Display()
+		{
+			foreach (ITrade itrade in this.mTrades)
+			{
+				Trade trade = itrade as Trade;
+				Console.WriteLine(" {0,18}  {1,-10}  {2,-10}  {3,15}", trade.Value.ToString("#,##0.00"), trade.ClientSector, trade.NextPaymentDate.ToString("dd/MM/yyyy"), trade.Category);
+			}
+		}
+
+		public Portfolio()
+		{
+			this.mTrades = new List<ITrade>();
+		}
+	}
 }
 
