@@ -6,6 +6,24 @@ namespace investment_bank
 {
 	class Program
 	{
+		class Configuration
+		{
+			public static Boolean wait;
+
+			public static void Decode(string[] parameters)
+			{
+				int index;
+				List<string> options;
+
+				index = -1;
+				while ( ++index < parameters.Length)
+				{
+					options = new List<string>(new string[] { "-w", "--wait" });
+					Configuration.wait = (options.Contains(parameters[index].ToLower()));
+				}
+			}
+		}
+
 		static Input ReadInput()
 		{
 			Input input = new Input();
@@ -29,6 +47,8 @@ namespace investment_bank
 
 		static void Main(string[] args)
 		{
+			Configuration.Decode(args);
+
 			Console.WriteLine("Trades");
 			Console.WriteLine();
 
@@ -40,7 +60,9 @@ namespace investment_bank
 			{
 
 			}
-			
+
+			if (Configuration.wait)
+				Console.ReadKey();
 		}
 	}
 }
