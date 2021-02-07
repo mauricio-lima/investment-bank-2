@@ -7,6 +7,8 @@ namespace investment_bank
 	public class Trade : ITrade
 	{
 		private double mValue;
+		private string   mClientSector;
+		private DateTime mNextPaymentDate;
 		private string mCategory;
 
 		void UpdateCategory()
@@ -22,16 +24,48 @@ namespace investment_bank
 				this.UpdateCategory();
 			}
 		}
-		public string	ClientSector	{ get; }
-		public DateTime NextPaymentDate	{ get; }
+		public string ClientSector	
+		{ 
+			get => mClientSector;
+			set
+			{
+				this.mClientSector = value;
+				this.UpdateCategory();
+			}
+		}
+		
+		public DateTime NextPaymentDate	
+		{ 
+			get => mNextPaymentDate;
+			set
+			{
+				this.mNextPaymentDate = value;
+				this.UpdateCategory();
+			}
+		}
+
 		public string	Category		
 		{ 
 			get => this.mCategory; 
 		}
 
-		public Trade()
+		private void Initialize()
 		{
 			this.mCategory = "DEFAULTED";
+		}
+
+		public Trade()
+		{
+			this.Initialize();
+		}
+
+		public Trade(double Value, string ClientSector, DateTime NextPaymentDate)
+		{
+			this.mValue           = Value;
+			this.mClientSector    = ClientSector;
+			this.mNextPaymentDate = NextPaymentDate;
+
+			this.Initialize();
 		}
 	}
 }
