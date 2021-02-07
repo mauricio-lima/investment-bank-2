@@ -37,11 +37,14 @@ namespace investment_bank
 
 		static void Process(Input input)
 		{
+			Portfolio portfolio = new Portfolio();
+
 			foreach(ITrade itrade in input.trades)
 			{
-				Trade trade = itrade as Trade;
-				Console.WriteLine("  {0,18}  {1,-10}  {2,-10}  {3,15}", trade.Value.ToString("#,##0.00"), trade.ClientSector, trade.NextPaymentDate.ToString("dd/MM/yyyy"), trade.Category);
+				portfolio.Trades.Add(itrade);
 			}
+
+			portfolio.Display();
 		}
 
 
