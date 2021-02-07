@@ -9,7 +9,8 @@ namespace investment_bank
 		static Input ReadInput()
 		{
 			Input input = new Input();
-			
+
+			input.trades.Add(new Trade());
 			
 			return input;
 		}
@@ -38,7 +39,7 @@ namespace investment_bank
 			{
 
 			}
-
+			
 		}
 	}
 }
