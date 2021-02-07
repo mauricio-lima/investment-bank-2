@@ -2,4 +2,4 @@
 
 [Specification](documents/specifications.pdf)  
 
-[Question 1](sources/q1)
+[Question 1](sources/investment-bank/q1)
