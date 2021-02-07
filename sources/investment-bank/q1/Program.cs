@@ -10,8 +10,9 @@ namespace investment_bank
 		{
 			Input input = new Input();
 
-			input.trades.Add(new Trade());		
-			
+			input.trades.Add(new Trade(3_000_000, "Private", DateTime.Parse("12/03/2020")));
+			input.trades.Add(new Trade(  900_000, "Public",  DateTime.Parse("15/05/2021")));
+
 			return input;
 		}
 
