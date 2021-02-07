@@ -10,7 +10,7 @@ namespace investment_bank
 		{
 			Input input = new Input();
 
-			input.trades.Add(new Trade());
+			input.trades.Add(new Trade());		
 			
 			return input;
 		}
@@ -20,8 +20,8 @@ namespace investment_bank
 		{
 			foreach(ITrade itrade in input.trades)
 			{
-				Trade trade = new Trade();
-				Console.WriteLine("  {0,-12}  {1,-10}", trade.Value, trade.Category);
+				Trade trade = itrade as Trade;
+				Console.WriteLine("  {0,18}  {1,-10}  {2,-10}  {3,15}", trade.Value.ToString("#,##0.00"), trade.ClientSector, trade.NextPaymentDate.ToString("dd/MM/yyyy"), trade.Category);
 			}
 		}
 
