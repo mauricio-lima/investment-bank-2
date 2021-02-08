@@ -52,6 +52,25 @@ namespace investment_bank
 		}
 
 
+		class HighRiskRule : IRule
+		{
+			public Boolean Match(ITrade trade)
+			{
+				if ( (trade.Value > 1_000_000) && (trade.ClientSector == "Private") )
+				{
+					this.Category = "HIGHRISK";
+					return true;
+				}
+
+				this.Category = "UNKNOWN";
+				return false;
+			}
+
+			public string Category { get; private set; }
+		}
+
+
+
 		//public List<ITrade> Trades
 		//{
 		//	get => this.mTrades;
@@ -63,6 +82,7 @@ namespace investment_bank
 
 			trade.Rules.Add(new DefaultedRule(this.mReferenceDate));
 			trade.Rules.Add(new MediumRiskRule());
+			trade.Rules.Add(new HighRiskRule  ());
 
 			trade.Value = Value;
 			trade.ClientSector = ClientSector;
