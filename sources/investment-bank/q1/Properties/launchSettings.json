@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "q1": {
+      "commandName": "Project",
+      "commandLineArgs": " < \"$(ProjectDir)input-01.txt\"",
+      "workingDirectory": "..\\..\\..\\bin"
+    }
+  }
+}
