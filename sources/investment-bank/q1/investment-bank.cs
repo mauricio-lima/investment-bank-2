@@ -16,14 +16,4 @@ namespace investment_bank
 		Boolean Match(ITrade trade);
 	}
 
-	public class Input
-	{
-		public DateTime		date;
-		public List<ITrade> trades { get; private set; }
-
-		public Input()
-		{
-			trades = new List<ITrade>();
-		}
-	}
 }
