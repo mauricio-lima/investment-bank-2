@@ -86,14 +86,10 @@ namespace investment_bank
 	}
 
 
-	class TradeCategories
-	{
-		
-	}
-
-
 	public class Portfolio
 	{
+		private List<ITrade> mTrades;
+
 		class EmptyRule : IRule
 		{
 			public Boolean Match(ITrade trade)
@@ -101,8 +97,6 @@ namespace investment_bank
 				return false;
 			}
 		}
-
-		private List<ITrade> mTrades;
 
 		public List<ITrade> Trades
 		{
@@ -112,7 +106,9 @@ namespace investment_bank
 		public void Add(double Value, string ClientSector, DateTime NextPaymentDate)
 		{
 			Trade trade = new Trade(Value, ClientSector, NextPaymentDate);
+
 			trade.Rules.Add(new EmptyRule());
+
 			this.mTrades.Add(trade);
 		}
 
