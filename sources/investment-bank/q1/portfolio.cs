@@ -56,19 +56,19 @@ namespace investment_bank
 		{
 			Console.WriteLine("  Trades");
 			Console.WriteLine();
-			Console.WriteLine("  +--------------------+------------+--------------+-----------------+");
-			Console.WriteLine("  |                    |            |    Next      |                 |");
-			Console.WriteLine("  |       Value        |   Client   |   Payment    |    Category     |");
-			Console.WriteLine("  |                    |   Sector   |    Date      |                 |");
-			Console.WriteLine("  +--------------------+------------+--------------+-----------------+");
+			Console.WriteLine("  +--------------------+--------------+--------------+-----------------+");
+			Console.WriteLine("  |                    |              |     Next     |                 |");
+			Console.WriteLine("  |       Value        |    Client    |    Payment   |    Category     |");
+			Console.WriteLine("  |                    |    Sector    |     Date     |                 |");
+			Console.WriteLine("  +--------------------+--------------+--------------+-----------------+");
 
 			foreach (ITrade itrade in this.mTrades)
 			{
 				Trade trade = itrade as Trade;
-				Console.WriteLine("  | {0,18} | {1,-10} | {2,12} | {3,-15} |", trade.Value.ToString("#,##0.00"), trade.ClientSector, trade.NextPaymentDate.ToString("dd/MM/yyyy"), trade.Category);
+				Console.WriteLine("  | {0,18} |  {1,-11} | {2,12} | {3,-15} |", trade.Value.ToString("#,##0.00"), trade.ClientSector, trade.NextPaymentDate.ToString("dd/MM/yyyy"), trade.Category);
 			}
 
-			Console.WriteLine("  +--------------------+------------+--------------+-----------------+");
+			Console.WriteLine("  +--------------------+--------------+--------------+-----------------+");
 			Console.WriteLine();
 		}
 
