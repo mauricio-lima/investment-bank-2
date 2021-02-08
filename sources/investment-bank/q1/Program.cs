@@ -55,9 +55,6 @@ namespace investment_bank
 		{
 			Configuration.Decode(args);
 
-			Console.WriteLine("Trades");
-			Console.WriteLine();
-
 			try
 			{
 				Process(ReadInput());
