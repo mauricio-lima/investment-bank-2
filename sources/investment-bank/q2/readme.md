@@ -1,4 +1,4 @@
-﻿## Question 1
+﻿## Question 2
 
-To see Question 1 execute on CLI interface or input a file with expected input
+To see Question 2 execute on CLI interface or input a file with expected input
 
