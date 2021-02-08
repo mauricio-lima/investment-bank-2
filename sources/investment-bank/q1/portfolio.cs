@@ -15,7 +15,7 @@ namespace investment_bank
 
 			public Boolean Match(ITrade trade)
 			{
-				double late = (trade.NextPaymentDate - this.mReferenceDate).TotalDays;
+				double late = (this.mReferenceDate - trade.NextPaymentDate).TotalDays;
 				if (late > 30)
 				{
 					this.Category = "DEFAULTED";
@@ -34,6 +34,24 @@ namespace investment_bank
 			}
 		}
 
+		class MediumRiskRule : IRule
+		{
+			public Boolean Match(ITrade trade)
+			{
+				if ((trade.Value > 1_000_000) && (trade.ClientSector == "Public"))
+				{
+					this.Category = "MEDIUMRISK";
+					return true;
+				}
+
+				this.Category = "UNKNOWN";
+				return false;
+			}
+
+			public string Category { get; private set; }
+		}
+
+
 		//public List<ITrade> Trades
 		//{
 		//	get => this.mTrades;
@@ -44,6 +62,7 @@ namespace investment_bank
 			Trade trade = new Trade();
 
 			trade.Rules.Add(new DefaultedRule(this.mReferenceDate));
+			trade.Rules.Add(new MediumRiskRule());
 
 			trade.Value = Value;
 			trade.ClientSector = ClientSector;
