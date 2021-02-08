@@ -14,6 +14,7 @@ namespace investment_bank
 	public interface IRule
 	{
 		Boolean Match(ITrade trade);
+		string  Category				{ get;  }
 	}
 
 }
