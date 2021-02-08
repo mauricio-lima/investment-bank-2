@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Collections.Generic;
 
 
@@ -30,9 +31,10 @@ namespace investment_bank
 
 			input.ReferenceDate = DateTime.Parse("12/11/2020");
 
-			input.trades.Add( new Trade(  400_000, "Public",  DateTime.Parse("07/01/2020")) );
-			input.trades.Add( new Trade(3_000_000, "Private", DateTime.Parse("12/03/2020")) );
-			input.trades.Add( new Trade(  900_000, "Public",  DateTime.Parse("15/05/2021")) );
+			input.trades.Add( new Trade( 2_000_000, "Private", DateTime.Parse("12/29/2025", CultureInfo.GetCultureInfo("en-US"))) );
+			input.trades.Add( new Trade(   400_000, "Public",  DateTime.Parse("07/01/2020", CultureInfo.GetCultureInfo("en-US"))) );
+			input.trades.Add( new Trade( 2_000_000, "Public",  DateTime.Parse("01/02/2024", CultureInfo.GetCultureInfo("en-US"))) );
+			input.trades.Add( new Trade( 3_000_000, "Public",  DateTime.Parse("10/26/2023", CultureInfo.GetCultureInfo("en-US"))) );
 
 			return input;
 		}
