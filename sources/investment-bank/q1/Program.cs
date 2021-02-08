@@ -28,8 +28,11 @@ namespace investment_bank
 		{
 			Input input = new Input();
 
-			input.trades.Add(new Trade(3_000_000, "Private", DateTime.Parse("12/03/2020")));
-			input.trades.Add(new Trade(  900_000, "Public",  DateTime.Parse("15/05/2021")));
+			input.ReferenceDate = DateTime.Parse("12/11/2020");
+
+			input.trades.Add( new Trade(  400_000, "Public",  DateTime.Parse("07/01/2020")) );
+			input.trades.Add( new Trade(3_000_000, "Private", DateTime.Parse("12/03/2020")) );
+			input.trades.Add( new Trade(  900_000, "Public",  DateTime.Parse("15/05/2021")) );
 
 			return input;
 		}
@@ -37,11 +40,11 @@ namespace investment_bank
 
 		static void Process(Input input)
 		{
-			Portfolio portfolio = new Portfolio();
+			Portfolio portfolio = new Portfolio(input.ReferenceDate);
 
 			foreach(ITrade itrade in input.trades)
 			{
-				portfolio.Trades.Add(itrade);
+				portfolio.Add(itrade.Value, itrade.ClientSector, itrade.NextPaymentDate);
 			}
 
 			portfolio.Display();
@@ -59,9 +62,9 @@ namespace investment_bank
 			{
 				Process(ReadInput());
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
-
+				Console.WriteLine("EXCEPTION : {0}", e.Message);
 			}
 
 			if (Configuration.wait)
