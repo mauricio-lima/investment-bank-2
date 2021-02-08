@@ -7,26 +7,48 @@ namespace investment_bank
 	public class Portfolio
 	{
 		private List<ITrade> mTrades;
+		private DateTime     mReferenceDate;
 
-		class EmptyRule : IRule
+		class DefaultedRule : IRule
 		{
+			private DateTime mReferenceDate;
+
 			public Boolean Match(ITrade trade)
 			{
+				double late = (trade.NextPaymentDate - this.mReferenceDate).TotalDays;
+				if (late > 30)
+				{
+					this.Category = "DEFAULTED";
+					return true;
+				}
+
+				this.Category = "UNKNOWN";
 				return false;
+			}
+
+			public string Category { get; private set; }
+
+			public DefaultedRule(DateTime ADate)
+			{
+				this.mReferenceDate = ADate;
 			}
 		}
 
-		public List<ITrade> Trades
-		{
-			get => this.mTrades;
-		}
+		//public List<ITrade> Trades
+		//{
+		//	get => this.mTrades;
+		//}
 
 		public void Add(double Value, string ClientSector, DateTime NextPaymentDate)
 		{
-			Trade trade = new Trade(Value, ClientSector, NextPaymentDate);
+			Trade trade = new Trade();
 
-			trade.Rules.Add(new EmptyRule());
+			trade.Rules.Add(new DefaultedRule(this.mReferenceDate));
 
+			trade.Value = Value;
+			trade.ClientSector = ClientSector;
+			trade.NextPaymentDate = NextPaymentDate;
+			
 			this.mTrades.Add(trade);
 		}
 
@@ -39,9 +61,10 @@ namespace investment_bank
 			}
 		}
 
-		public Portfolio()
+		public Portfolio(DateTime ADate)
 		{
 			this.mTrades = new List<ITrade>();
+			this.mReferenceDate = ADate;
 		}
 	}
 }

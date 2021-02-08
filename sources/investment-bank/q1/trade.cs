@@ -62,16 +62,28 @@ namespace investment_bank
 
 		private void ApplyRules()
 		{
-			this.mCategory = "DEFAULTED";
+			foreach (IRule rule in this.mRules)
+			{
+				if (rule.Match(this))
+				{
+					this.mCategory = rule.Category;
+					break;
+				}
+			}
 		}
 
 		private void Initialize()
 		{
-			this.mCategory = "DEFAULTED";
+			this.mCategory = "UNKNOWN";
+			this.mRules = new HashSet<IRule>();
 		}
 
 		public Trade()
 		{
+			//this.mValue = null;
+			//this.mClientSector = null;
+			//this.mNextPaymentDate = null;
+
 			this.Initialize();
 		}
 
