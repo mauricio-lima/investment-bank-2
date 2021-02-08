@@ -6,10 +6,10 @@ namespace investment_bank
 {
 	public class Trade : ITrade
 	{
-		private double mValue;
-		private string   mClientSector;
-		private DateTime mNextPaymentDate;
-		private string mCategory;
+		private double         mValue;
+		private string         mClientSector;
+		private DateTime       mNextPaymentDate;
+		private string         mCategory;
 		private HashSet<IRule> mRules;
 
 		void UpdateCategory()
