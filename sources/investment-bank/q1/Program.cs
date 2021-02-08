@@ -29,7 +29,7 @@ namespace investment_bank
 		{
 			Input input = new Input();
 
-			input.ReferenceDate = DateTime.Parse("12/11/2020");
+			input.ReferenceDate = DateTime.Parse("12/11/2020", CultureInfo.GetCultureInfo("en-US"));
 
 			input.trades.Add( new Trade( 2_000_000, "Private", DateTime.Parse("12/29/2025", CultureInfo.GetCultureInfo("en-US"))) );
 			input.trades.Add( new Trade(   400_000, "Public",  DateTime.Parse("07/01/2020", CultureInfo.GetCultureInfo("en-US"))) );
