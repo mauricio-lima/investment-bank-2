@@ -111,9 +111,6 @@ namespace investment_bank
 			{
 				throw e;
 			}
-
-
-			Console.WriteLine(this.ReferenceDate);
 		}
 
 		public Input()
