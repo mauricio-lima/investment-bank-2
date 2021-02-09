@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy input-01.txt  $(OutDir)" />
+    <Exec Command="copy samples\input-*.txt  $(OutDir)" />
   </Target>
 
 </Project>
