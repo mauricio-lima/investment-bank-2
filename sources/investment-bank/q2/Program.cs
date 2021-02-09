@@ -31,12 +31,12 @@ namespace investment_bank
 
 			input.Read();
 
-			input.ReferenceDate = DateTime.Parse("12/11/2020", CultureInfo.GetCultureInfo("en-US"));
+			//input.ReferenceDate = DateTime.Parse("12/11/2020", CultureInfo.GetCultureInfo("en-US"));
 
-			input.trades.Add( new Trade( 2_000_000, "Private", DateTime.Parse("12/29/2025", CultureInfo.GetCultureInfo("en-US"))) );
-			input.trades.Add( new Trade(   400_000, "Public",  DateTime.Parse("07/01/2020", CultureInfo.GetCultureInfo("en-US"))) );
-			input.trades.Add( new Trade( 2_000_000, "Public",  DateTime.Parse("01/02/2024", CultureInfo.GetCultureInfo("en-US"))) );
-			input.trades.Add( new Trade( 3_000_000, "Public",  DateTime.Parse("10/26/2023", CultureInfo.GetCultureInfo("en-US"))) );
+			//input.trades.Add( new Trade( 2_000_000, "Private", DateTime.Parse("12/29/2025", CultureInfo.GetCultureInfo("en-US"))) );
+			//input.trades.Add( new Trade(   400_000, "Public",  DateTime.Parse("07/01/2020", CultureInfo.GetCultureInfo("en-US"))) );
+			//input.trades.Add( new Trade( 2_000_000, "Public",  DateTime.Parse("01/02/2024", CultureInfo.GetCultureInfo("en-US"))) );
+			//input.trades.Add( new Trade( 3_000_000, "Public",  DateTime.Parse("10/26/2023", CultureInfo.GetCultureInfo("en-US"))) );
 
 			return input;
 		}
@@ -73,7 +73,7 @@ namespace investment_bank
 			}
 
 			if (Configuration.wait)
-				Console.ReadKey();
+				Console.Read();
 
 
 			return result;
