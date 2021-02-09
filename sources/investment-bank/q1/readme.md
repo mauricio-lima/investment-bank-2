@@ -38,5 +38,5 @@ Output:
   +--------------------+--------------+--------------+-----------------+
 ```
 
-Image:
+Image of output:  
 ![Output](../../../screenshots/screenshot-001.png)
