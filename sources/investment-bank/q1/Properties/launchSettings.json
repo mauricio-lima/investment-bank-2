@@ -2,7 +2,7 @@
   "profiles": {
     "q1": {
       "commandName": "Project",
-      "commandLineArgs": "--wait < \"$(ProjectDir)input-01.txt\"",
+      "commandLineArgs": "--wait < \"$(ProjectDir)\\samples\\input-01.txt\"",
       "workingDirectory": "..\\..\\..\\bin"
     }
   }

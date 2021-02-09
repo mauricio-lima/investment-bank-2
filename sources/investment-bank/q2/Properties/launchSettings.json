@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "q2": {
+      "commandName": "Project",
+      "commandLineArgs": "--wait < \"$(ProjectDir)\\samples\\input-01.txt\""
+    }
+  }
+}
