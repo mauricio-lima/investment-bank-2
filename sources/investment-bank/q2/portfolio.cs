@@ -69,17 +69,33 @@ namespace investment_bank
 			public string Category { get; private set; }
 		}
 
+		class PoliticallyExposedRiskRule : IRule
+		{
+			public Boolean Match(ITrade trade)
+			{
+				if ( trade.IsPoliticallyExposed )
+				{
+					this.Category = "PEP";
+					return true;
+				}
 
+				this.Category = "DEFAULTED";
+				return false;
+			}
+
+			public string Category { get; private set; }
+		}
 
 		//public List<ITrade> Trades
 		//{
 		//	get => this.mTrades;
 		//}
 
-		public void Add(double Value, string ClientSector, DateTime NextPaymentDate)
+		public void Add(double Value, string ClientSector, DateTime NextPaymentDate, Boolean IsPoliticallyExposed)
 		{
 			Trade trade = new Trade();
 
+			trade.Rules.Add(new PoliticallyExposedRiskRule());
 			trade.Rules.Add(new DefaultedRule(this.mReferenceDate));
 			trade.Rules.Add(new MediumRiskRule());
 			trade.Rules.Add(new HighRiskRule  ());
@@ -87,12 +103,14 @@ namespace investment_bank
 			trade.Value = Value;
 			trade.ClientSector = ClientSector;
 			trade.NextPaymentDate = NextPaymentDate;
+			trade.IsPoliticallyExposed = IsPoliticallyExposed;
 			
 			this.mTrades.Add(trade);
 		}
 
 		public void Display()
 		{
+			Console.WriteLine();
 			Console.WriteLine("  Trades");
 			Console.WriteLine();
 			Console.WriteLine("  +--------------------+--------------+--------------+-----------------+");

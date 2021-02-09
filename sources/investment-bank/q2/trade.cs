@@ -9,6 +9,7 @@ namespace investment_bank
 		private double         mValue;
 		private string         mClientSector;
 		private DateTime       mNextPaymentDate;
+		private Boolean        mIsPoliticallyExposed;
 		private string         mCategory;
 		private HashSet<IRule> mRules;
 
@@ -41,6 +42,16 @@ namespace investment_bank
 			set
 			{
 				this.mNextPaymentDate = value;
+				this.UpdateCategory();
+			}
+		}
+
+		public Boolean IsPoliticallyExposed
+		{
+			get => mIsPoliticallyExposed;
+			set
+			{
+				this.mIsPoliticallyExposed = value;
 				this.UpdateCategory();
 			}
 		}
@@ -87,11 +98,12 @@ namespace investment_bank
 			this.Initialize();
 		}
 
-		public Trade(double Value, string ClientSector, DateTime NextPaymentDate)
+		public Trade(double Value, string ClientSector, DateTime NextPaymentDate, Boolean IsPoliticallyExposed)
 		{
-			this.mValue           = Value;
-			this.mClientSector    = ClientSector;
-			this.mNextPaymentDate = NextPaymentDate;
+			this.mValue                = Value;
+			this.mClientSector         = ClientSector;
+			this.mNextPaymentDate      = NextPaymentDate;
+			this.mIsPoliticallyExposed = IsPoliticallyExposed;
 
 			this.Initialize();
 		}

@@ -6,9 +6,10 @@ namespace investment_bank
 {
 	public interface ITrade
 	{
-		double Value { get; }
-		string ClientSector { get; }
-		DateTime NextPaymentDate { get; }
+		double   Value					{ get; }
+		string   ClientSector			{ get; }
+		DateTime NextPaymentDate		{ get; }
+		Boolean  IsPoliticallyExposed	{ get; }
 	}
 
 	public interface IRule

@@ -12,6 +12,7 @@ namespace investment_bank
 			public double   Value;
 			public string   ClientSector;
 			public DateTime NextPaymentDate;
+			public Boolean  IsPoliticallyExposed;
 		}
 
 		public DateTime     ReferenceDate	{ get; set; }
@@ -76,11 +77,16 @@ namespace investment_bank
 				if ( !options.Contains(tokens[1].ToLower()) )
 					throw new Exception( String.Format("Invalid token '{0}' at second position in trades row {1}", tokens[1], row+1) );
 
+				List<string> exposedOptions = new List<string>(new string[] { "yes", "no" });
+				if (!exposedOptions.Contains(tokens[3].ToLower()))
+					throw new Exception(String.Format("Invalid token '{0}' at fourth position in trades row {1}", tokens[3], row + 1));
+
 				return new TradeInfo
 				{
-					Value           = Convert.ToDouble(this.ParseInteger(tokens[0], String.Format("Number expected at first position at line {0}", row))),
-					ClientSector    = tokens[1],
-					NextPaymentDate = this.ParseDate(tokens[2])
+					Value                = Convert.ToDouble(this.ParseInteger(tokens[0], String.Format("Number expected at first position at line {0}", row))),
+					ClientSector         = tokens[1],
+					NextPaymentDate      = this.ParseDate(tokens[2]),
+					IsPoliticallyExposed = tokens[3] == "yes" ? true : false
 				};
 			}
 			catch (Exception e)
@@ -99,7 +105,7 @@ namespace investment_bank
 				for(int row = 0; row < count; row++)
 				{
 					var trade = this.ParseTradeData(this.NextLine(), row);
-					this.trades.Add(new Trade( trade.Value, trade.ClientSector, trade.NextPaymentDate ));
+					this.trades.Add(new Trade( trade.Value, trade.ClientSector, trade.NextPaymentDate, trade.IsPoliticallyExposed ));
 				}
 			}
 			catch (FormatException e)
