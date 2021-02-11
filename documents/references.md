@@ -31,3 +31,14 @@ https://www.w3.org/International/questions/qa-byte-order-mark
 How can I transform string to UTF-8 in C#?  
 https://stackoverflow.com/questions/14057434/how-can-i-transform-string-to-utf-8-in-c
 
+Getting Images into Markdown Documents and Weblog Posts with Markdown Monster
+https://medium.com/markdown-monster-blog/getting-images-into-markdown-documents-and-weblog-posts-with-markdown-monster-9ec6f353d8ec
+
+Structure types (C# reference)  
+https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/struct
+
+Regex.Split Method  
+https://docs.microsoft.com/en-us/dotnet/api/system.text.regularexpressions.regex.split?view=net-5.0
+
+
+
